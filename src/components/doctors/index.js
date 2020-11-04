@@ -10,7 +10,7 @@ import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap';
 **/
 
 const Doctors = (props) => {
-    const [username, setUsername] = useState('Arthur');
+    const [username, setUsername] = useState('Doctor');
     const [password, setPassword] = useState('');
     const [loggedIn, setLoggedIn] = useState(false);
 
@@ -24,7 +24,7 @@ const Doctors = (props) => {
 
     function handleLogin(event) {
         event.preventDefault();
-        if (username === 'Arthur' && password === '123456')
+        if (username === 'Doctor' && password === '123456')
             setLoggedIn(true)
         window.location = "doctorsPortal";
     }
@@ -38,8 +38,8 @@ const Doctors = (props) => {
                     <Nav.Link href="/aboutUs">About Us</Nav.Link>
                     <Nav.Link href="/services">Services</Nav.Link>
                     <Nav.Link href="/signUp">Sign Up</Nav.Link>
-                </Nav>y
-                    <Form inline>
+                </Nav>
+                <Form inline>
                     <FormControl type="text" placeholder="Search" className="mr-sm-2" />
                     <Button variant="outline-light">Search</Button>
                 </Form>

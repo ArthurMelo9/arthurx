@@ -18,8 +18,8 @@ const DoctorsPortal = (props) => {
                     <Nav.Link href="/aboutUs">About Us</Nav.Link>
                     <Nav.Link href="/services">Services</Nav.Link>
                     <Nav.Link href="/signUp">Sign Up</Nav.Link>
-                </Nav>y
-                    <Form inline>
+                </Nav>
+                <Form inline>
                     <FormControl type="text" placeholder="Search" className="mr-sm-2" />
                     <Button variant="outline-light">Search</Button>
                 </Form>

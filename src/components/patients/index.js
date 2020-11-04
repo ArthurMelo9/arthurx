@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap';
+import { Navbar, Nav, Form, FormControl, Button, Card } from 'react-bootstrap';
 import './style.css';
 //import { BrowserRouter, NavLink, route, } from 'react-router-dom';
 //import Home from '../home';
@@ -15,7 +15,7 @@ import PatientImage from '../home/images/telemedicine-coronavirus.jpg';
 
 const Patients = (props) => {
 
-    const [username, setUsername] = useState('Arthur');
+    const [username, setUsername] = useState('Patient');
     const [password, setPassword] = useState('');
     const [loggedIn, setLoggedIn] = useState(false);
 
@@ -29,7 +29,7 @@ const Patients = (props) => {
 
     function handleLogin(event) {
         event.preventDefault();
-        if (username === 'Arthur' && password === '123456')
+        if (username === 'Patient' && password === '123456')
             setLoggedIn(true)
         window.location = "patientsPortal";
     }
@@ -53,38 +53,52 @@ const Patients = (props) => {
 
             <br />
             <hr />
-            <img src={PatientImage} alt='patient' />
+            <Card>
+                <Card.Img variant="top" src={PatientImage} />
+                <Card.Body>
+                    <Card.Title>Card title</Card.Title>
+                    <Card.Text>
+                        This is a wider card with supporting text below as a natural lead-in to
+                        additional content. This content is a little bit longer.
+      </Card.Text>
+                    {
+                        loggedIn === true ?
+                            <p>Welcome Patient! How may we help you?...</p> : null
+                    }
 
 
-            {
-                loggedIn === true ?
-                    <p>Welcome Arthur! What do you have for us today? Add a new post...</p> : null
-            }
 
-
-
-            <form>
-                <span>Login</span>
-                <br />
-                <br />
-                <label>
-                    <input type="text" value={username} placeholder="Username" onChange={handleUsernameInput} />
+                    <form>
+                        <span>Login</span>
+                        <br />
+                        <br />
+                        <label>
+                            <input type="text" value={username} placeholder="Username" onChange={handleUsernameInput} />
                     Username</label>
-                <br />
-                <br />
-                <label><input type="password" value={password} placeholder="Password" onChange={handlePasswordInput} /> Password</label>
-                <br /> <br />
-                <button onClick={handleLogin}>Login</button>
-                <br /> <br />
-                <span><a href="#">Forgot password?</a>
-                    <br />
-                    <a href="/signUp">Sign up</a></span>
-            </form>
+                        <br />
+                        <br />
+                        <label><input type="password" value={password} placeholder="Password" onChange={handlePasswordInput} /> Password</label>
+                        <br /> <br />
+                        <button onClick={handleLogin}>Login</button>
+                        <br /> <br />
+                        <span><a href="#">Forgot password?</a>
+                            <br />
+                            <a href="/signUp">Sign up</a></span>
+                    </form>
 
 
 
 
-            <Nav.Link href="/freeService" > Free services </Nav.Link>
+                    <Nav.Link href="/freeService" > Free services </Nav.Link>
+                </Card.Body>
+                <Card.Footer>
+                    <small className="text-muted">Last updated 3 mins ago</small>
+                </Card.Footer>
+            </Card>
+
+
+
+
 
         </div>
     )
