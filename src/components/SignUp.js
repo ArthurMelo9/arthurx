@@ -1,68 +1,184 @@
-import React from 'react'
-import { Form, Col, Button } from 'react-bootstrap';
+import React, { Component } from 'react';
+import './signUp.css';
+import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap';
 
 /**
 * @author
 * @function SignUp
 **/
 
-const SignUp = (props) => {
-    return (
-        <div>
-            <Form>
-                <Form.Row>
-                    <Form.Group as={Col} controlId="formGridEmail">
-                        <Form.Label>Email</Form.Label>
-                        <Form.Control type="email" placeholder="Enter email" />
-                    </Form.Group>
+const emailRegex = RegExp(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
 
-                    <Form.Group as={Col} controlId="formGridPassword">
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password" />
-                    </Form.Group>
-                </Form.Row>
+const formValid = ({ formErrors, ...rest }) => {
+    let valid = true;
 
-                <Form.Group controlId="formGridAddress1">
-                    <Form.Label>Address</Form.Label>
-                    <Form.Control placeholder="1234 Main St" />
-                </Form.Group>
+    // validate form errors being empty
+    Object.values(formErrors).forEach(val => {
+        val.length > 0 && (valid = false);
+    });
 
-                <Form.Group controlId="formGridAddress2">
-                    <Form.Label>Address 2</Form.Label>
-                    <Form.Control placeholder="Apartment, studio, or floor" />
-                </Form.Group>
+    // validate the form was filled out
+    Object.values(rest).forEach(val => {
+        val === null && (valid = false);
+    });
 
-                <Form.Row>
-                    <Form.Group as={Col} controlId="formGridCity">
-                        <Form.Label>City</Form.Label>
-                        <Form.Control />
-                    </Form.Group>
+    return valid;
+};
 
-                    <Form.Group as={Col} controlId="formGridState">
-                        <Form.Label>State</Form.Label>
-                        <Form.Control as="select" defaultValue="Choose...">
-                            <option>Choose...</option>
-                            <option>...</option>
-                        </Form.Control>
-                    </Form.Group>
+class SignUp extends Component {
+    constructor(props) {
+        super(props);
 
-                    <Form.Group as={Col} controlId="formGridZip">
-                        <Form.Label>Zip</Form.Label>
-                        <Form.Control />
-                    </Form.Group>
-                </Form.Row>
+        this.state = {
+            firstName: null,
+            lastName: null,
+            email: null,
+            password: null,
+            formErrors: {
+                firstName: "",
+                lastName: "",
+                email: "",
+                password: ""
+            }
+        };
+    }
 
-                <Form.Group id="formGridCheckbox">
-                    <Form.Check type="checkbox" label="Check me out" />
-                </Form.Group>
+    handleSubmit = e => {
+        e.preventDefault();
 
-                <Button variant="primary" type="submit">
-                    Submit
-                </Button>
-            </Form>
-        </div>
-    )
+        if (formValid(this.state)) {
+            console.log(`
+          --SUBMITTING--
+          First Name: ${this.state.firstName}
+          Last Name: ${this.state.lastName}
+          Email: ${this.state.email}
+          Password: ${this.state.password}
+        `);
+        } else {
+            console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
+        }
+    };
 
+    handleChange = e => {
+        e.preventDefault();
+        const { name, value } = e.target;
+        let formErrors = { ...this.state.formErrors };
+
+        switch (name) {
+            case "firstName":
+                formErrors.firstName =
+                    value.length < 3 ? "minimum 3 characaters required" : "";
+                break;
+            case "lastName":
+                formErrors.lastName =
+                    value.length < 3 ? "minimum 3 characaters required" : "";
+                break;
+            case "email":
+                formErrors.email = emailRegex.test(value)
+                    ? ""
+                    : "invalid email address";
+                break;
+            case "password":
+                formErrors.password =
+                    value.length < 6 ? "minimum 6 characaters required" : "";
+                break;
+            default:
+                break;
+        }
+
+        this.setState({ formErrors, [name]: value }, () => console.log(this.state));
+    };
+
+    render() {
+        const { formErrors } = this.state;
+
+        return (
+
+            <div>
+                <Navbar bg="primary" variant="dark">
+                    <Navbar.Brand>ArthuRx</Navbar.Brand>
+                    <Nav className="mr-auto">
+                        <Nav.Link href="/">Home</Nav.Link>
+                        <Nav.Link href="/contactUs">Contact Us</Nav.Link>
+                        <Nav.Link href="/aboutUs">About Us</Nav.Link>
+                        <Nav.Link href="/services">Services</Nav.Link>
+                        <Nav.Link href="/signUp">Sign Up</Nav.Link>
+                    </Nav>
+                    <Form inline>
+                        <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+                        <Button variant="outline-light">Search</Button>
+                    </Form>
+                </Navbar>
+                <div className="wrapper">
+                    <div className="form-wrapper">
+                        <h1>Sign Up</h1>
+                        <form onSubmit={this.handleSubmit} noValidate>
+                            <div className="firstName">
+                                <label htmlFor="firstName">First Name</label>
+                                <input
+                                    className={formErrors.firstName.length > 0 ? "error" : null}
+                                    placeholder="First Name"
+                                    type="text"
+                                    name="firstName"
+                                    noValidate
+                                    onChange={this.handleChange}
+                                />
+                                {formErrors.firstName.length > 0 && (
+                                    <span className="errorMessage">{formErrors.firstName}</span>
+                                )}
+                            </div>
+                            <div className="lastName">
+                                <label htmlFor="lastName">Last Name</label>
+                                <input
+                                    className={formErrors.lastName.length > 0 ? "error" : null}
+                                    placeholder="Last Name"
+                                    type="text"
+                                    name="lastName"
+                                    noValidate
+                                    onChange={this.handleChange}
+                                />
+                                {formErrors.lastName.length > 0 && (
+                                    <span className="errorMessage">{formErrors.lastName}</span>
+                                )}
+                            </div>
+                            <div className="email">
+                                <label htmlFor="email">Email</label>
+                                <input
+                                    className={formErrors.email.length > 0 ? "error" : null}
+                                    placeholder="Email"
+                                    type="email"
+                                    name="email"
+                                    noValidate
+                                    onChange={this.handleChange}
+                                />
+                                {formErrors.email.length > 0 && (
+                                    <span className="errorMessage">{formErrors.email}</span>
+                                )}
+                            </div>
+                            <div className="password">
+                                <label htmlFor="password">Password</label>
+                                <input
+                                    className={formErrors.password.length > 0 ? "error" : null}
+                                    placeholder="Password"
+                                    type="password"
+                                    name="password"
+                                    noValidate
+                                    onChange={this.handleChange}
+                                />
+                                {formErrors.password.length > 0 && (
+                                    <span className="errorMessage">{formErrors.password}</span>
+                                )}
+                            </div>
+                            <div className="createAccount">
+                                <button type="submit">Sign Up</button>
+                                <small>Already Have an Account?</small>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        );
+    }
 }
 
 export default SignUp;
