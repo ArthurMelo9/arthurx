@@ -56,7 +56,7 @@ const PatientsPortal = (props) => {
                          </Card.Text>
                         <Card.Link href="#"></Card.Link>
                         <hr />
-                        <Card.Link href="#">Tell us your symptoms</Card.Link>
+                        <Card.Link href="/chat">Tell us your symptoms</Card.Link>
                     </Card.Body>
                     <Card.Footer>
                         <small className="text-muted">Our virtual consultation is top notch!</small>

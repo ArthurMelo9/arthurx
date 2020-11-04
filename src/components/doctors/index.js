@@ -29,7 +29,7 @@ const Doctors = (props) => {
         window.location = "doctorsPortal";
     }
     return (
-        <Card>
+        <div className="logInBox">
             <Navbar bg="primary" variant="dark">
                 <Navbar.Brand>ArthuRx</Navbar.Brand>
                 <Nav className="mr-auto">
@@ -44,39 +44,60 @@ const Doctors = (props) => {
                     <Button variant="outline-light">Search</Button>
                 </Form>
             </Navbar>
+            Doctors
+
             <br />
             <hr />
-            <div className="logInBox">
-                <img src={Doctor} alt='doctor' />
+            <Card>
+                <Card.Img variant="top" src={Doctor} />
+                <Card.Body>
+                    <Card.Title>Card title</Card.Title>
+                    <Card.Text>
+                        This is a wider card with supporting text below as a natural lead-in to
+                        additional content. This content is a little bit longer.
+      </Card.Text>
+                    {
+                        loggedIn === true ?
+                            <p>Welcome Doctor! Ready to save some lives?...</p> : null
+                    }
 
 
-                {
-                    loggedIn === true ?
-                        <p>Welcome Doctor! Ready to save some lives? </p> : null
-                }
 
-
-
-                <form>
-                    <span>Login</span>
-                    <br />
-                    <br />
-                    <label>
-                        <input type="text" value={username} placeholder="Username" onChange={handleUsernameInput} />
-                    Username</label>
-                    <br />
-                    <br />
-                    <label><input type="password" value={password} placeholder="Password" onChange={handlePasswordInput} /> Password</label>
-                    <br /> <br />
-                    <button onClick={handleLogin}>Login</button>
-                    <br /> <br />
-                    <span><a href="#">Forgot password?</a>
+                    <form>
+                        <span>Login</span>
                         <br />
-                        <a href="/signUp">Sign up</a></span>
-                </form>
-            </div>
-        </Card>
+                        <br />
+                        <label>
+                            <input type="text" value={username} placeholder="Username" onChange={handleUsernameInput} />
+                    Username</label>
+                        <br />
+                        <br />
+                        <label><input type="password" value={password} placeholder="Password" onChange={handlePasswordInput} /> Password</label>
+                        <br /> <br />
+                        <button onClick={handleLogin}>Login</button>
+                        <br /> <br />
+                        <span><a href="#">Forgot password?</a>
+                            <br />
+                            <a href="/signUp">Sign up</a></span>
+                    </form>
+
+
+
+
+
+                </Card.Body>
+                <Card.Footer>
+                    <small className="text-muted">Last updated 3 mins ago</small>
+                </Card.Footer>
+            </Card>
+
+
+
+
+
+        </div>
     )
+
 
 }
 
