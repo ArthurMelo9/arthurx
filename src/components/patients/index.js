@@ -92,7 +92,7 @@ const Patients = (props) => {
                     <Nav.Link href="/freeService" > Free services </Nav.Link>
                 </Card.Body>
                 <Card.Footer>
-                    <small className="text-muted">Last updated 3 mins ago</small>
+                    <small className="text-muted">Our virtual consultation is top-notch!</small>
                 </Card.Footer>
             </Card>
 

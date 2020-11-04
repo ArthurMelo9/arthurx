@@ -1,11 +1,11 @@
 
-import './App.css';
+/*import './App.css';*/
 
 import Home from './components/home';
-import ContactUs from './components/home';
-import Services from './components/home';
-import AboutUs from './components/home';
-import SignUp from './components/home';
+import ContactUs from './components/ContactUs';
+import Services from './components/Services';
+import AboutUs from './components/AboutUs';
+import SignUp from './components/SignUp';
 import FreeService from './components/patients/FreeService'
 
 import Doctors from './components/doctors';
@@ -37,6 +37,8 @@ function App() {
           <Route path="/chat" exact component={Chat} />
         </Switch>
       </Router>
+
+
 
 
 

@@ -2,6 +2,7 @@ import React from 'react'
 import Comm from './images/comm.jpg';
 import Doc from './images/telemedicine-760.jpg';
 import Tele from './images/tele.png';
+import { useHistory } from "react-router-dom";
 import './style.css';
 import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap';
 import Carousel from 'react-bootstrap/Carousel';
@@ -17,17 +18,28 @@ import Carousel from 'react-bootstrap/Carousel';
 
 const Home
     = (props) => {
+        const history = useHistory()
+        const navigateTo = (path) => {
+            return (
+                (e) => {
+                    e.preventDefault()
+                    history.push(path)
+                }
+            )
+
+
+        }
         return (
             <div>
 
                 <Navbar bg="primary" variant="dark">
                     <Navbar.Brand>ArthuRx</Navbar.Brand>
                     <Nav className="mr-auto">
-                        <Nav.Link href="/">Home</Nav.Link>
-                        <Nav.Link href="/contactUs">Contact Us</Nav.Link>
-                        <Nav.Link href="/aboutUs">About Us</Nav.Link>
-                        <Nav.Link href="/services">Services</Nav.Link>
-                        <Nav.Link href="/signUp">Sign Up</Nav.Link>
+                        <Nav.Link onClick={navigateTo("/")}>Home</Nav.Link>
+                        <Nav.Link onClick={navigateTo("/contactUs")} >Contact Us</Nav.Link>
+                        <Nav.Link onClick={navigateTo("/aboutUs")}>About Us</Nav.Link>
+                        <Nav.Link onClick={navigateTo("/services")}>Services</Nav.Link>
+                        <Nav.Link onClick={navigateTo("/signUp")}>Sign Up</Nav.Link>
                     </Nav>
                     <Form inline>
                         <FormControl type="text" placeholder="Search" className="mr-sm-2" />

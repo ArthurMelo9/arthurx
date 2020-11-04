@@ -56,7 +56,7 @@ const Chat = (props) => {
                         variant='outlined'
                         label='Message' />
                 </div>
-                <button>Send message</button>
+                <button onClick={onMessageSubmit}>Send message</button>
             </form>
             <div className='render-chat'>
                 <h1>Chat Log</h1>
