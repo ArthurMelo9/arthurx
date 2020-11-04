@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Nav } from 'react-bootstrap';
+
+import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap';
 import './style.css';
 //import { BrowserRouter, NavLink, route, } from 'react-router-dom';
 //import Home from '../home';
@@ -30,10 +31,28 @@ const Patients = (props) => {
         event.preventDefault();
         if (username === 'Arthur' && password === '123456')
             setLoggedIn(true)
-        window.location = "patientPortal";
+        window.location = "patientsPortal";
     }
     return (
-        <div className="logInBox">Patients
+        <div className="logInBox">
+            <Navbar bg="primary" variant="dark">
+                <Navbar.Brand>ArthuRx</Navbar.Brand>
+                <Nav className="mr-auto">
+                    <Nav.Link href="/">Home</Nav.Link>
+                    <Nav.Link href="/contactUs">Contact Us</Nav.Link>
+                    <Nav.Link href="/aboutUs">About Us</Nav.Link>
+                    <Nav.Link href="/services">Services</Nav.Link>
+                    <Nav.Link href="/signUp">Sign Up</Nav.Link>
+                </Nav>
+                <Form inline>
+                    <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+                    <Button variant="outline-light">Search</Button>
+                </Form>
+            </Navbar>
+            Patients
+
+            <br />
+            <hr />
             <img src={PatientImage} alt='patient' />
 
 
