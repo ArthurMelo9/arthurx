@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Nav } from 'react-bootstrap';
+import './style.css';
 //import { BrowserRouter, NavLink, route, } from 'react-router-dom';
 //import Home from '../home';
-import Image from 'react-bootstrap/Image';
+//import Image from 'react-bootstrap/Image';
 import PatientImage from '../home/images/telemedicine-coronavirus.jpg';
 
 /**
@@ -10,26 +11,59 @@ import PatientImage from '../home/images/telemedicine-coronavirus.jpg';
 * @function Patients
 **/
 
+
 const Patients = (props) => {
+
+    const [username, setUsername] = useState('Arthur');
+    const [password, setPassword] = useState('');
+    const [loggedIn, setLoggedIn] = useState(false);
+
+    const handleUsernameInput = (event) => {
+        setUsername(event.target.value)
+    };
+
+    const handlePasswordInput = (event) => {
+        setPassword(event.target.value)
+    };
+
+    function handleLogin(event) {
+        event.preventDefault();
+        if (username === 'Arthur' && password === '123456')
+            setLoggedIn(true)
+        window.location = "patientPortal";
+    }
     return (
-        <div>Patients
-            <Image src={PatientImage} fluid />
+        <div className="logInBox">Patients
+            <img src={PatientImage} alt='patient' />
+
+
+            {
+                loggedIn === true ?
+                    <p>Welcome Arthur! What do you have for us today? Add a new post...</p> : null
+            }
+
+
+
             <form>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
-                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" />
-                </div>
-                <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <span>Login</span>
+                <br />
+                <br />
+                <label>
+                    <input type="text" value={username} placeholder="Username" onChange={handleUsernameInput} />
+                    Username</label>
+                <br />
+                <br />
+                <label><input type="password" value={password} placeholder="Password" onChange={handlePasswordInput} /> Password</label>
+                <br /> <br />
+                <button onClick={handleLogin}>Login</button>
+                <br /> <br />
+                <span><a href="#">Forgot password?</a>
+                    <br />
+                    <a href="/signUp">Sign up</a></span>
             </form>
+
+
+
 
             <Nav.Link href="/freeService" > Free services </Nav.Link>
 
