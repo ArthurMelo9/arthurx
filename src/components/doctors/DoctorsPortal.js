@@ -39,9 +39,13 @@ const DoctorsPortal = (props) => {
                     <ListGroupItem>Vestibulum at eros</ListGroupItem>
                 </ListGroup>
                 <Card.Body>
-                    <Card.Link href="#">View patients complaints</Card.Link>
+                    <Card.Link href="/chat">Chat with patient</Card.Link>
                     <hr />
                     <Card.Link href="#">See Patient</Card.Link>
+                    <hr />
+                    <Card.Link href="/to-do-list">To-do-List</Card.Link>
+                    <hr />
+                    <Card.Link href="/doctors">Back to doctors login</Card.Link>
                 </Card.Body>
             </Card>
         </div>

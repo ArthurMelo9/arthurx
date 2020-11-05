@@ -14,6 +14,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import DoctorsPortal from './components/doctors/DoctorsPortal';
 import PatientsPortal from './components/patients/PatientsPortal';
 import Chat from './Chat';
+import TodoList from './components/doctors/ToDoList/ToDoList';
 //import Switch from 'react-bootstrap/esm/Switch';
 
 
@@ -35,6 +36,7 @@ function App() {
           <Route path="/patientsPortal" exact component={PatientsPortal} />
           <Route path="/freeService" exact component={FreeService} />
           <Route path="/chat" exact component={Chat} />
+          <Route path="/to-do-list" exact component={TodoList} />
         </Switch>
       </Router>
 
