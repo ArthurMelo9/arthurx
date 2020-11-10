@@ -7,7 +7,7 @@ import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap';
 * @function DoctorsPortal
 **/
 
-const DoctorsPortal = (props) => {
+const DoctorsPortal = ({ handleLogout }) => {
     return (
         <div>
             <Navbar bg="primary" variant="dark">
@@ -45,9 +45,12 @@ const DoctorsPortal = (props) => {
                     <hr />
                     <Card.Link href="/to-do-list">To-do-List</Card.Link>
                     <hr />
-                    <Card.Link href="/doctors">Back to doctors login</Card.Link>
+
+                    <button onClick={handleLogout} >Logout</button>
                 </Card.Body>
             </Card>
+
+
         </div>
     )
 

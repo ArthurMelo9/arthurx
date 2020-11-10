@@ -2,23 +2,25 @@
 /*import './App.css';*/
 
 import Home from './components/home';
-import ContactUs from './components/ContactUs';
+/*import ContactUs from './components/ContactUs';
 import Services from './components/Services';
 import AboutUs from './components/AboutUs';
 import SignUp from './components/SignUp';
-import FreeService from './components/patients/FreeService'
+import FreeService from './components/patients/FreeService'*/
 
-import Doctors from './components/doctors';
-import Patients from './components/patients';
+/*import Doctors from './components/doctors';
+import Patients from './components/patients';*/
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import DoctorsPortal from './components/doctors/DoctorsPortal';
+/*import DoctorsPortal from './components/doctors/DoctorsPortal';
 import PatientsPortal from './components/patients/PatientsPortal';
 import Chat from './Chat';
-import TodoList from './components/doctors/ToDoList/ToDoList';
+import TodoList from './components/doctors/ToDoList/ToDoList';*/
+
 //import Switch from 'react-bootstrap/esm/Switch';
 
 
 function App() {
+  console.log('anything')
   return (
     <div className="App">
 
@@ -26,7 +28,7 @@ function App() {
       <Router>
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/contactUs" exact component={ContactUs} />
+          {/**<Route path="/contactUs" exact component={ContactUs} />
           <Route path="/services" exact component={Services} />
           <Route path="/aboutUs" exact component={AboutUs} />
           <Route path="/signUp" exact component={SignUp} />
@@ -36,11 +38,9 @@ function App() {
           <Route path="/patientsPortal" exact component={PatientsPortal} />
           <Route path="/freeService" exact component={FreeService} />
           <Route path="/chat" exact component={Chat} />
-          <Route path="/to-do-list" exact component={TodoList} />
+  <Route path="/to-do-list" exact component={TodoList} />**/}
         </Switch>
       </Router>
-
-
 
 
 
